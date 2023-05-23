@@ -9,9 +9,6 @@ html, body {
 
 body {
     background-color: #121212;
-    background-image: url('./images/bg-img.png');
-    background-size: 100% 20vh;
-    background-repeat: no-repeat;
 }
 
 .title-header{
@@ -20,7 +17,7 @@ body {
     width: 100%;
     align-items: baseline;
     justify-content: space-around;
-    margin-top: 2.5em;
+    margin-top: 1.5em;
 }
 
 .search-header{
@@ -31,7 +28,9 @@ body {
     border-radius: 0.375em;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 2em;
+    margin-top: 2em;    
+    position:absolute;
+    bottom: -1em;
 }
 
 .search-style {
@@ -46,6 +45,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .search-btn-style {
@@ -63,3 +63,30 @@ body {
 .glass-style{
     color: #9CA3AF;
 }
+
+.header-bg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    width: 100%;
+    height: 25vh;
+    background-image: url('./images/bg-img.png');  
+    position: relative;
+}
+
+.movies{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+.movies > img {
+    height: 16%;
+    width: 17.5%;
+    object-fit: contain;
+}
+
+
+
