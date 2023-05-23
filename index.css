@@ -10,6 +10,56 @@ html, body {
 body {
     background-color: #121212;
     background-image: url('./images/bg-img.png');
-    background-size: 100vw 30vh;
+    background-size: 100% 20vh;
     background-repeat: no-repeat;
+}
+
+.title-header{
+    color: #FFFFFF;
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    justify-content: space-around;
+    margin-top: 2.5em;
+}
+
+.search-header{
+    display: flex;
+    width:80%;
+    padding:0;
+    background-color: #2E2E2F;
+    border-radius: 0.375em;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.search-style {
+    width:63%;
+    background: transparent;
+    outline: none;
+    border:none;
+    color: #A5A5A5;
+}
+
+.main-page-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-btn-style {
+    width: 27%;
+    height: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: 0.375em;
+    border: none;
+    outline: none;
+    background-color: #4B4B4B;
+    color: #FFFFFF;
+}
+
+.glass-style{
+    color: #9CA3AF;
 }
