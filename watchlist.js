@@ -11,11 +11,12 @@ if(localStorage.getItem("watchList") !== null){
     watchList = watchListFromStorage
 }
 
-console.log(watchList)
-
 const getShowsInfo = (showList, divToRender) => {
     console.log(document.getElementById(divToRender))
     document.getElementById(divToRender).innerHTML = ''
+    if(watchList.length === 0){
+        renderIfNoShowsInWatchList()
+    }
     showList.forEach(async (element) => {
         const showUrl = `${baseUrl}?i=${element}&apikey=${apiKey}`
         const response = await fetch(showUrl)
@@ -50,7 +51,20 @@ const getShowsInfo = (showList, divToRender) => {
     })
 }
 
-getShowsInfo(watchList, "watch-show-id")
+
+const renderIfNoShowsInWatchList = () => {
+    document.getElementById("no-shows-in-watchlist").innerHTML += `
+    <p>Your watchlist is looking a little empty...</p>
+    <i class="fa-solid fa-circle-plus" ><a href="index.html"> Lets add some movies!</a></i>
+`
+}
+
+if(watchList.length === 0){
+    renderIfNoShowsInWatchList()
+}
+else{
+    getShowsInfo(watchList, "watch-show-id")
+}
 
 document.addEventListener("click", (event) => {
     console.log(event.target.id)

@@ -204,3 +204,13 @@ a {
     color: white;
     text-decoration: none;
 }
+
+#no-shows-in-watchlist{
+    align-self: center;
+    text-align: center;
+}
+
+#no-shows-in-watchlist a{
+    margin-left: 1em;
+}
+
