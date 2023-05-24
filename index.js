@@ -10,6 +10,8 @@ let initialLoadFlag = 0
 
 let watchList = []
 
+let showsList;
+
 if(localStorage.getItem("watchList") !== null){
     const watchListFromStorage = JSON.parse(localStorage.getItem("watchList"))
     watchList = watchListFromStorage
@@ -28,7 +30,7 @@ searchBtn.addEventListener("click", async () => {
     const response = await fetch(`${baseUrl}?s=${showName}&apikey=${apiKey}`)
     const data = await response.json()
     if(data["Response"] === "True"){
-        let showsList = []
+        showsList = []
         for(let showObj of data["Search"]){
             showsList.push(showObj["imdbID"])
         }
@@ -65,7 +67,8 @@ const getShowsInfo = (showList, divToRender) => {
             <div class="runtime-genre-watchlist">
                 <p>${runtime}</p>
                 <p>${genre}</p>
-                <i class="fa-solid fa-circle-plus"><a id="add-to-watchlist-${element}" href="#" class="watchlist-style">  Watchlist</a></i>
+                ${watchList.includes(element) ? `<i class="fa-solid fa-circle-minus"><a id="rem-to-watchlist-${element}" href="#" class="watchlist-style">  Remove</a></i>`:`<i class="fa-solid fa-circle-plus"><a id="add-to-watchlist-${element}" href="#" class="watchlist-style">  Watchlist</a></i>`}
+                
             </div>
             <div class="short-plot">
                 <p>${plot.substring(0, 55)} <button id="read-more-${element}">... read more</button><span id="other-content-${element}" style="display: none;">${plot.substring(70)} </span><button id="read-less-${element}" style="display: none;">... read less</button></p>
@@ -92,9 +95,17 @@ document.addEventListener("click", (event) => {
         document.getElementById(`read-more-${event.target.id.substring(10)}`).style.display = "inline"
     }
     if(event.target.id.includes("add-to-watchlist")){
-  
-        watchList.push(event.target.id.substring(17))
-        localStorage.setItem("watchList", JSON.stringify(watchList)) 
+        if(!watchList.includes(event.target.id.substring(17))){
+            watchList.push(event.target.id.substring(17))
+            localStorage.setItem("watchList", JSON.stringify(watchList)) 
+            getShowsInfo(showsList,"show-id")
+        }
+    }
+    if(event.target.id.includes("rem-to-watchlist")){
+        console.log(event.target.id.substring(17))
+        watchList = watchList.filter(imdbId => imdbId !== event.target.id.substring(17))
+        localStorage.setItem("watchList", JSON.stringify(watchList))
+        getShowsInfo(showsList,"show-id")
     }
 })    
 
