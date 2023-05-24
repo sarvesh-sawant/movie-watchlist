@@ -197,3 +197,10 @@ a {
     align-self: center;
     font-size: 0.8rem;
 }
+
+.title-header > a {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}

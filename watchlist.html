@@ -7,29 +7,20 @@
     <title>Movie Watchlist</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="main-page-container">
         <div class="header-bg">
             <div class="title-header">
                 <h1>Find your film</h1>
-                <a href='watchlist.html' id="watchlist-id">My Watchlist</a>
-            </div>
-            <div class="search-header">
-                <i class="fa fa-search glass-style"></i>
-                <input type="search" name="search-content" id="search-id" class="search-style">
-                <button type="submit" id="search-btn" class="search-btn-style">Search</button>
+                <a href="index.html">Search for movies</a>
             </div>
         </div>
         <div class="movies">
-            <img src="./images/reel.png" id='img-png'>
-            <p id="no-shows-id" style="display: none;">Unable to find what you’re looking for. Please try another search.</p>
-            <div class="show" id="show-id">
+            <div class="show" id="watch-show-id">
             </div>
         </div>
     </div>
-    <script src="config.js" type="module"></script>
-    <script src="index.js" type="module"></script>
+    <script src="watchlist.js" type="module"></script>
 </body>
 </html>
