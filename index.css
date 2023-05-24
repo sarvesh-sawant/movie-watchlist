@@ -191,3 +191,9 @@ a {
         font-size: 70%;
     }
 }
+
+#no-shows-id {
+    color: #787878;
+    align-self: center;
+    font-size: 0.8rem;
+}

@@ -9,6 +9,7 @@ const baseUrl = "http://www.omdbapi.com/"
 let initialLoadFlag = 0
 
 searchBtn.addEventListener("click", async () => {
+    document.getElementById('no-shows-id').style.display = "none"
     if(initialLoadFlag === 0){
         document.getElementById('img-png').remove()
         initialLoadFlag+=1
@@ -26,6 +27,7 @@ searchBtn.addEventListener("click", async () => {
         getShowsInfo(showsList)
     }else{
         console.log("No movie found")
+        document.getElementById('no-shows-id').style.display = "block"
     }
     searchText.value = ""
 })
