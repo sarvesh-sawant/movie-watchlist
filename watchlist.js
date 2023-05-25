@@ -73,7 +73,7 @@ document.addEventListener("click", (event) => {
     }
     if(event.target.id.includes("add-to-watchlist")){
         watchList = watchList.filter(imdbId => imdbId !== event.target.id.substring(17))
-        localStorage.removeItem('watchList')
+        localStorage.setItem("watchList", JSON.stringify(watchList))
         getShowsInfo(watchList, "watch-show-id")
     }
 }) 
