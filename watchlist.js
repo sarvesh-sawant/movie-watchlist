@@ -1,4 +1,4 @@
-const baseUrl = "http://sarveshsawant.com/omdb"
+const baseUrl = "https://sarveshsawant.com/omdb"
 
 let watchList = []
 

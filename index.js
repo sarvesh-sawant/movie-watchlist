@@ -1,7 +1,7 @@
 const searchBtn = document.getElementById("search-btn")
 const searchText = document.getElementById("search-id")
 
-const baseUrl = "http://sarveshsawant.com/omdb"
+const baseUrl = "https://sarveshsawant.com/omdb"
 
 let initialLoadFlag = 0
 
