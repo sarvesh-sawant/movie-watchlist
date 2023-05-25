@@ -61,6 +61,16 @@ else{
 }
 
 document.addEventListener("click", (event) => {
+    if(event.target.id.includes("read-more")){
+        document.getElementById(event.target.id).style.display = "none"
+        document.getElementById(`other-content-${event.target.id.substring(10)}`).style.display = "inline"
+        document.getElementById(`read-less-${event.target.id.substring(10)}`).style.display = "inline"
+    }
+    if(event.target.id.includes("read-less")){
+        document.getElementById(event.target.id).style.display = "none"
+        document.getElementById(`other-content-${event.target.id.substring(10)}`).style.display = "none"
+        document.getElementById(`read-more-${event.target.id.substring(10)}`).style.display = "inline"
+    }
     if(event.target.id.includes("add-to-watchlist")){
         watchList = watchList.filter(imdbId => imdbId !== event.target.id.substring(17))
         localStorage.removeItem('watchList')
