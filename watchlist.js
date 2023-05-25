@@ -1,8 +1,4 @@
-
-import { config  } from "./config.js";
-
-const apiKey = config.OMDB_API_SECRET;
-const baseUrl = "http://www.omdbapi.com/"
+const baseUrl = "http://sarveshsawant.com/omdb"
 
 let watchList = []
 
@@ -12,13 +8,12 @@ if(localStorage.getItem("watchList") !== null){
 }
 
 const getShowsInfo = (showList, divToRender) => {
-    console.log(document.getElementById(divToRender))
     document.getElementById(divToRender).innerHTML = ''
     if(watchList.length === 0){
         renderIfNoShowsInWatchList()
     }
     showList.forEach(async (element) => {
-        const showUrl = `${baseUrl}?i=${element}&apikey=${apiKey}`
+        const showUrl = `${baseUrl}/showid/${element}`
         const response = await fetch(showUrl)
         const data = await response.json()
         let title = data["Title"]
@@ -27,7 +22,6 @@ const getShowsInfo = (showList, divToRender) => {
         let genre = data["Genre"] 
         let plot = data["Plot"] 
         let poster = data["Poster"]
-        console.log(`title=${title}\nimdbRating=${imdbRating}\nruntime=${runtime}\ngenre=${genre}\nplot=${plot}\nposter=${poster}`)
         document.getElementById(divToRender).innerHTML += `
         <div class="show-img">
         <img src="${poster}">
@@ -67,9 +61,7 @@ else{
 }
 
 document.addEventListener("click", (event) => {
-    console.log(event.target.id)
     if(event.target.id.includes("add-to-watchlist")){
-        console.log(event.target.id.substring(17))
         watchList = watchList.filter(imdbId => imdbId !== event.target.id.substring(17))
         localStorage.removeItem('watchList')
         getShowsInfo(watchList, "watch-show-id")

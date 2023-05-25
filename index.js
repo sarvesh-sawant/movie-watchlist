@@ -1,10 +1,7 @@
-import { config  } from "./config.js";
-
 const searchBtn = document.getElementById("search-btn")
 const searchText = document.getElementById("search-id")
 
-const apiKey = config.OMDB_API_SECRET;
-const baseUrl = "http://www.omdbapi.com/"
+const baseUrl = "http://sarveshsawant.com/omdb"
 
 let initialLoadFlag = 0
 
@@ -15,7 +12,6 @@ let showsList;
 if(localStorage.getItem("watchList") !== null){
     const watchListFromStorage = JSON.parse(localStorage.getItem("watchList"))
     watchList = watchListFromStorage
-    console.log(watchList)
 }
 
 searchBtn.addEventListener("click", async () => {
@@ -27,7 +23,7 @@ searchBtn.addEventListener("click", async () => {
         initialLoadFlag+=1
     }
     let showName = searchText.value
-    const response = await fetch(`${baseUrl}?s=${showName}&apikey=${apiKey}`)
+    const response = await fetch(`${baseUrl}/shows/${showName}`)
     const data = await response.json()
     if(data["Response"] === "True"){
         showsList = []
@@ -42,10 +38,9 @@ searchBtn.addEventListener("click", async () => {
 })
 
 const getShowsInfo = (showList, divToRender) => {
-    console.log(document.getElementById(divToRender))
     document.getElementById(divToRender).innerHTML = ''
     showList.forEach(async (element) => {
-        const showUrl = `${baseUrl}?i=${element}&apikey=${apiKey}`
+        const showUrl = `${baseUrl}/showid/${element}`
         const response = await fetch(showUrl)
         const data = await response.json()
         let title = data["Title"]
@@ -54,7 +49,6 @@ const getShowsInfo = (showList, divToRender) => {
         let genre = data["Genre"] 
         let plot = data["Plot"] 
         let poster = data["Poster"]
-        console.log(`title=${title}\nimdbRating=${imdbRating}\nruntime=${runtime}\ngenre=${genre}\nplot=${plot}\nposter=${poster}`)
         document.getElementById(divToRender).innerHTML += `
         <div class="show-img">
         <img src="${poster}">
@@ -68,7 +62,6 @@ const getShowsInfo = (showList, divToRender) => {
                 <p>${runtime}</p>
                 <p>${genre}</p>
                 ${watchList.includes(element) ? `<i class="fa-solid fa-circle-minus"><a id="rem-to-watchlist-${element}" href="#" class="watchlist-style">  Remove</a></i>`:`<i class="fa-solid fa-circle-plus"><a id="add-to-watchlist-${element}" href="#" class="watchlist-style">  Watchlist</a></i>`}
-                
             </div>
             <div class="short-plot">
                 <p>${plot.substring(0, 55)} <button id="read-more-${element}">... read more</button><span id="other-content-${element}" style="display: none;">${plot.substring(70)} </span><button id="read-less-${element}" style="display: none;">... read less</button></p>
@@ -81,7 +74,6 @@ const getShowsInfo = (showList, divToRender) => {
 
 
 document.addEventListener("click", (event) => {
-    console.log(event.target.id)
     if(event.target.id.includes("read-more")){
 
         document.getElementById(event.target.id).style.display = "none"
@@ -102,7 +94,6 @@ document.addEventListener("click", (event) => {
         }
     }
     if(event.target.id.includes("rem-to-watchlist")){
-        console.log(event.target.id.substring(17))
         watchList = watchList.filter(imdbId => imdbId !== event.target.id.substring(17))
         localStorage.setItem("watchList", JSON.stringify(watchList))
         getShowsInfo(showsList,"show-id")

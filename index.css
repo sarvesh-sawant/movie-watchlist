@@ -214,3 +214,12 @@ a {
     margin-left: 1em;
 }
 
+.watchlist-style {
+    color: white;
+    text-decoration: none;
+}
+
+#no-shows-in-watchlist a{
+    color: white;
+    text-decoration: none;    
+}
