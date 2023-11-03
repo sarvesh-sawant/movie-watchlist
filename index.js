@@ -1,7 +1,7 @@
 const searchBtn = document.getElementById("search-btn")
 const searchText = document.getElementById("search-id")
 
-const baseUrl = "https://sarveshsawant.com/omdb"
+const baseUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=a364b521/"
 
 let initialLoadFlag = 0
 
